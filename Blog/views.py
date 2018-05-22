@@ -12,7 +12,7 @@ def College_list(request):
 
 def College_detail(request, pk):
     collw = get_object_or_404(College, pk=pk)
-    return render(request, 'blog/post_detail.html', {'collw': collw})
+    return render(request, 'Blog/post_detail.html', {'collw': collw})
 
 def post_new(request):
     if request.method == "POST":
@@ -25,7 +25,7 @@ def post_new(request):
             return redirect('college_detail', pk=post.pk)
     else:
         form = PostForm()
-    return render(request, 'blog/post_create.html', {'form': form})
+    return render(request, 'Blog/post_create.html', {'form': form})
 
 def post_edit(request, pk):
     post = get_object_or_404(College, pk=pk)
@@ -39,12 +39,12 @@ def post_edit(request, pk):
             return redirect('college_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
-    return render(request, 'blog/post_edit.html', {'form': form})
+    return render(request, 'Blog/post_edit.html', {'form': form})
 
 def sarch(request):
     Coll_list = College.objects.all()
     COLL_filter = CollegeFilter(request.GET, queryset=Coll_list)
-    return render(request, 'blog/f_list.html', {'filter': COLL_filter})
+    return render(request, 'Blog/f_list.html', {'filter': COLL_filter})
 
 def contact(request):
-    return render(request,'blog/Contact.html',{})
+    return render(request,'Blog/Contact.html',{})
