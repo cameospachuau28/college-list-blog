@@ -1,0 +1,17 @@
+{% extends 'Blog/base.html' %}
+
+{% block content %}
+<h1 style="font-family:Lobster,sans-serif;font-size:3em;">College List</h1>
+    {% for post in coll %}
+
+
+           <ul class="list-group">
+               <li class="list-group-item"><a href="{% url 'college_detail' pk=post.pk %}"><p style="font-family:Dosis,sans-serif;font-size:2em;">
+                   {{ post.College_name }}</p></a>
+            <p style="font-family:Roboto,sans-serif;font-size:1em;padding-left:70px;">{{ post.Location|linebreaksbr }}</p>
+               </li>
+
+           </ul>
+
+    {% endfor %}
+{% endblock %}

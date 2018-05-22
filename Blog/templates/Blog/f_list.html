@@ -1,0 +1,45 @@
+{% extends 'Blog/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+
+  <form method="get">
+     <div class="form-group col-sm-4 col-md-3">
+          {{ filter.form.College_name.label_tag }}
+          {% render_field filter.form.College_name class="form-control" %}
+        </div>
+      <div class="form-group col-sm-4 col-md-3">
+          {{ filter.form.Courses_offered.label_tag }}
+          {% render_field filter.form.Courses_offered class="form-control" %}
+        </div>
+
+<br>
+    <button id="search" type="submit" class="btn btn-primary" ><i class="fa fa-search"></i> Search</button>
+  </form>
+    <table class="table table-bordered">
+    <thead>
+      <tr>
+          <th style="font-family:Quicksand;font-size:1.4em;">College name</th>
+        <th style="font-family:Quicksand;font-size:1.4em;">Location</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in filter.qs %}
+
+
+            <td style="font-family:Dosis,sans-serif;font-size:1.3em;"> <a href="{% url 'college_detail' pk=user.pk %}">{{ user.College_name }}</a></td>
+          <td style="font-family:Dosis,sans-serif;font-size:1.2em;">{{ user.Location }}</td>
+
+</td>
+
+      {% empty %}
+        <tr>
+          <td colspan="5">No data</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

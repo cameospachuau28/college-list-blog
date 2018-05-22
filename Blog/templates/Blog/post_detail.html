@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+     <a class="btn btn-default" href="{% url 'post_edit' pk=collw.pk %}">Edit <span class="glyphicon glyphicon-pencil"></span></a>
+        {% endif %}
+     <h1>  <p style="font-family:Dosis,sans-serif;font-size:1.5em;">
+                   {{collw}}</p></h1>
+
+       <p style="font-family:'Quicksand',sans-serif;">Location: {{ collw.Location|linebreaksbr }}</p>
+
+<br>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th style="font-family:Quicksand;font-size:1.2em;">Courses Offered</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>{% for genre in collw.Courses_offered.all %}
+        <td style="font-size:1.2em;padding-left:40px; ">{{ genre }}</td>
+        {% endfor %}
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+  <br>
+<p style="font-family:Josefin+Sans;font-style:italic">{{collw.Comment}}</p>
+{% endblock %}
