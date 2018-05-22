@@ -19,7 +19,7 @@ def post_new(request):
         form = PostForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            
+
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
@@ -46,4 +46,4 @@ def sarch(request):
     return render(request, 'Blog/f_list.html', {'filter': COLL_filter})
 
 def contact(request):
-    return render(request,'log/Contact.html',{})
+    return render(request,'Blog/Contact.html',{})

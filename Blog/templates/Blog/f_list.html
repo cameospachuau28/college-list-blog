@@ -27,12 +27,12 @@
     </thead>
     <tbody>
       {% for user in filter.qs %}
-
+<tr>
 
             <td style="font-family:Dosis,sans-serif;font-size:1.3em;"> <a href="{% url 'college_detail' pk=user.pk %}">{{ user.College_name }}</a></td>
           <td style="font-family:Dosis,sans-serif;font-size:1.2em;">{{ user.Location }}</td>
 
-</td>
+</tr>
 
       {% empty %}
         <tr>

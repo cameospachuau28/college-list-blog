@@ -19,7 +19,8 @@
     </thead>
 
     <tbody>
-      <tr>{% for genre in collw.Courses_offered.all %}
+      {% for genre in collw.Courses_offered.all %}
+      <tr>
         <td style="font-size:1.2em;padding-left:40px; ">{{ genre }}</td>
         {% endfor %}
       </tr>
