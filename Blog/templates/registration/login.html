@@ -2,8 +2,9 @@
 
 {% block content %}
 
+    <p style="font-size:2em;font-family:Abel;"> LOGIN.</p>
 {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
+<p style="font-family:Acme;color:red;">Your username and password didn't match. Please try again.</p>
 {% endif %}
 
 {% if next %}
@@ -11,29 +12,31 @@
     <p>Your account doesn't have access to this page. To proceed,
     please login with an account that has access.</p>
     {% else %}
-    <p>Please login to see this page.</p>
+    <p style="font-family:Lobster">   Please login to see this page.</p>
     {% endif %}
 {% endif %}
 
 <form method="post" action="{% url 'login' %}">
 {% csrf_token %}
 
-<div>
-  <td>{{ form.username.label_tag }}</td>
-  <td>{{ form.username }}</td>
+<div class="col-xs-7">
+  <td style="font-family:Lobster;"  >{{ form.username.label_tag }}</td>
+   <td ><input  class="form-control"{{ form.username }} </td>
 </div>
-<div>
+<div class="col-xs-7">
   <td>{{ form.password.label_tag }}</td>
-  <td>{{ form.password }}</td>
+  <td><input  class="form-control col-sm-2"{{ form.password }} </td>
 </div>
-
-<div>
-  <input type="submit" value="login" />
+<br>
+<div class="col-xs-7">
+  <input type="submit" value="login" class="btn btn-primary" style="padding:10px 50px;margin-top:20px;"/>
   <input type="hidden" name="next" value="{{ next }}" />
+</br>
+    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
 </div>
 </form>
 
 {# Assumes you setup the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+
 
 {% endblock %}

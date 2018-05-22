@@ -22,5 +22,7 @@ class College(models.Model):
     def __str__(self):
 
         return self.College_name
+    class Meta:
+        ordering =['College_name']
 
 
