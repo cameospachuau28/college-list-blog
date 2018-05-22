@@ -13,7 +13,8 @@ class Course(models.Model):
 
 
 class College(models.Model):
-    College_name = models.CharField(max_length=200,primary_key=True)
+    id = models.IntegerField(primary_key=True)
+    College_name = models.CharField(max_length=200)
     Location = models.CharField(max_length=200)
     Courses_offered = models.ManyToManyField(Course,help_text="Select Courses")
     Comment = models.TextField()
