@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-
+from django.contrib.auth.models import User
 
 class Course(models.Model):
 
@@ -25,4 +25,21 @@ class College(models.Model):
     class Meta:
         ordering =['College_name']
 
+
+class Commenting(models.Model):
+    pot = models.ForeignKey('College',on_delete=models.SET_NULL,null=True,related_name='comments')
+    name = models.CharField(max_length=50)
+    comment_body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=False)
+
+    def approve(self):
+        self.active = True
+        self.save()
+
+    class Meta:
+        ordering = ['created']
+
+    def __str__(self):
+        return 'comment by {} on {}'.format(self.name, self.pot)
 

@@ -5,8 +5,8 @@
 {% if user.is_authenticated %}
      <a class="btn btn-default" href="{% url 'post_edit' pk=collw.pk %}">Edit <span class="glyphicon glyphicon-pencil"></span></a>
         {% endif %}
-     <h1>  <p style="font-family:Dosis,sans-serif;font-size:1em;">
-                   {{collw.College_name}}</p></h1>
+    <p style="font-family:Dosis,sans-serif;font-size:1em;"> <h1>
+                   {{collw.College_name}}</h1> </p>
 
        <p style="font-family:'Quicksand',sans-serif;">Location: {{ collw.Location|linebreaksbr }}</p>
 
@@ -30,4 +30,17 @@
 
   <br>
 <p style="font-family:Josefin+Sans;padding:10px 10px;">{{collw.Comment}}</p>
+<hr>
+<a class="btn btn-secondary">Add</a>
+{% for comm in collw.comments.all %}
+<div class="commenting"></div>
+
+<strong>{{comm.name}}</strong>
+<div class="datee"> {{comm.created}}</div>
+<p>{{comm.body}}</p>
+
+
+{% empty %}
+No comments yet
+{% endfor %}
 {% endblock %}

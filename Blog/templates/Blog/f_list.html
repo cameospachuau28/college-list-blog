@@ -2,7 +2,7 @@
 {% load widget_tweaks %}
 {% block content %}
 
-
+<div class="well">
   <form method="get">
      <div class="form-group col-sm-4 col-md-3">
           {{ filter.form.College_name.label_tag }}
@@ -16,6 +16,7 @@
 <br>
     <button id="search" type="submit" class="btn btn-primary" ><i class="fa fa-search"></i> Search</button>
   </form>
+    </div>
     <table class="table table-bordered">
     <thead>
       <tr>
