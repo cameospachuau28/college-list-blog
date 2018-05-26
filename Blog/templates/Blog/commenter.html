@@ -1,0 +1,21 @@
+{% extends 'Blog/base.html' %}
+
+{% block content %}
+<h1 style="font-family:Lobster,sans-serif;font-size:3em;" align="center">Add Comment</h1>
+<form method="POST" class="post-form">
+    {% csrf_token %}
+
+    <input type="hidden" name="coname" value="{{user.get_username}}">
+    <!--<input type="text" name="cobody" class="form-control" height="30">-->
+    <div class="form-group">
+        <label for="comment">Comment:</label>
+        <textarea name="cobody" class="form-control" rows="5" id="comment" ></textarea>
+    </div>
+
+    <input  type="hidden" name="coactive" value="True">
+
+    <button type="submit" class="save btn btn-warning">Comment</button>
+</form>
+
+
+{% endblock %}

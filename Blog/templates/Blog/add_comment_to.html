@@ -1,13 +1,32 @@
 {% extends 'Blog/base.html' %}
 
 {% block content %}
-<h1 style="font-family:Lobster,sans-serif;font-size:3em;" align="center">Add Comment</h1>
-<form method="POST" class="post-form">
-    {% csrf_token %}
-    {{form.as_p}}
+{% load widget_tweaks %}
+<script type="text/javascript">
+window.onload = function() {
+    var Stri= "{{request.get_full_path}}";
 
-    <button type="submit" class="save btn btn-default">Comment</button>
+
+    var Out = Stri.slice(9,10);
+     console.log(Out);
+    document.getElementById("id_pot").value = Out;
+}
+</script>
+
+<div>
+<form method="post" novalidate>
+ {% csrf_token %}
+        <input type="hidden" name="pot" maxlength="50" class="form-control" required id="id_pot" /></input>
+        <p style="font-family:Acme;font-size:2em;">{{user.get_username}}</p>
+        <input type="hidden" name="name" maxlength="50" class="form-control" required id="id_name" value="{{user.get_username}}"/>
+    <div class="form-group">
+      <label for="id_comment_body">Comment body:</label>
+        <textarea name="comment_body" cols="40" rows="10" class="form-control" required id="id_comment_body">
+</textarea>
+    </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+</div>
 
 
 {% endblock %}

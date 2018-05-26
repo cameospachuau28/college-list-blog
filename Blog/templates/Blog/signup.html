@@ -1,0 +1,61 @@
+{% extends 'Blog/base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<style>
+
+</style>
+<!--<h2>Sign up</h2>-->
+  <!--<form method="post">-->
+    <!--{% csrf_token %}-->
+    <!--{{ form.as_p }}-->
+    <!--<button type="submit">Sign up</button>-->
+  <!--</form>-->
+
+<body class="text-center">
+{% if forms.ValidationError %}
+user name reg
+{% endif %}
+
+<h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
+<form method="post" >
+{% csrf_token %}
+
+<div class="col-md-12">
+  <td style="font-family:Lobster;"  ><label for="id_username"></label></td>
+   <td ><input class="form-control" type="text" name="username" autofocus maxlength="254" required id="id_username" placeholder="Username" /> </td>
+</div>
+
+<!--<div class="col-md-12">-->
+  <!--<td style="font-family:Lobster;"  ><label for="id_email"></label></td>-->
+   <!--<td ><input class="form-control" type="email" name="email" autofocus maxlength="254" required id="id_email" placeholder="Email address" /> </td>-->
+<!--</div>-->
+
+<div class="col-md-12">
+  <td><label for="id_password1"></label></td>
+  <td><input  class="form-control col-sm-2"  type="password" name="password1" required id="id_password1" placeholder="Password"  /> </td>
+</div>
+
+<div class="col-md-12">
+  <td><label for="id_password2"></label></td>
+  <td><input  class="form-control col-sm-2"  type="password" name="password2" required id="id_password2" placeholder="Confirm Password"  /> </td>
+</div>
+<br>
+<div class="col-md-12">
+  <!--<input type="submit" value="Login" class="btn btn-primary " style=" padding:10px 100px;margin-top:20px;"/>-->
+  <input type="submit" value="Sign up" class="btn btn-lg btn-primary btn-block" />
+  <input type="hidden" name="next" value="" />
+</br>
+    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+    <p style="color:#323c3f;font-family:Roboto;">Don't have an account?<a href="{% url 'signup' %}"> Sign up now</a></p>
+</div>
+</form>
+</body>
+{% if form.ValidationError %}
+user name reg
+{% endif %}
+{% if form.errors %}
+Incorrect Input
+{% endif %}
+{% endblock %}

@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from datetime import datetime
 
 class Course(models.Model):
 
@@ -11,6 +12,8 @@ class Course(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ['name']
 
 class College(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -30,7 +33,7 @@ class Commenting(models.Model):
     pot = models.ForeignKey('College',on_delete=models.SET_NULL,null=True,related_name='comments')
     name = models.CharField(max_length=50)
     comment_body = models.TextField()
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(default=datetime.now())
     active = models.BooleanField(default=False)
 
     def approve(self):
