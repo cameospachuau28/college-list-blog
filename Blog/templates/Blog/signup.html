@@ -47,8 +47,7 @@ user name reg
   <input type="submit" value="Sign up" class="btn btn-lg btn-primary btn-block" />
   <input type="hidden" name="next" value="" />
 </br>
-    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-    <p style="color:#323c3f;font-family:Roboto;">Don't have an account?<a href="{% url 'signup' %}"> Sign up now</a></p>
+
 </div>
 </form>
 </body>
@@ -56,6 +55,6 @@ user name reg
 user name reg
 {% endif %}
 {% if form.errors %}
-Incorrect Input
+<p style="color:#f22;font-size:0.7em;">Incorrect Input or Username already taken</p>
 {% endif %}
 {% endblock %}

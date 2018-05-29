@@ -7,12 +7,12 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = College
-        fields = ('College_name', 'Courses_offered','Comment')
+        fields = ('id','College_name','Location', 'Courses_offered','Comment')
 
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Commenting
-        fields = ('pot','name','comment_body',)
+        fields = ('pot','name','comment_body','active')
 
 
 def clean_username(self):

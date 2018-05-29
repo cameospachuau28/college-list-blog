@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zirna</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//fonts.googleapis.com/css?family=Lato|Abel|Acme|Dosis|Quicksand|Roboto|Josefin+Sans|Lobster&subnet=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!--<link rel="stylesheet" href="{% static 'css/blog.css' %}">-->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+
+
+
+<nav class="navbar navbar-inverse" >
+  <div class="container-fluid">
+    <div class="navbar-header" style="padding-bottom:5px;">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#" style="font-family:Lobster,sans-serif;font-size:1.3em;color:white;">MSA Bangalore</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar" style="font-family:Roboto,sans-serif;font-size:1em;">
+      <ul class="nav navbar-nav" style="font-family:Lato;">
+        <li class="active"><a href="/">Home</a></li>
+
+        <li><a href="{% url 'sarch' %}">Search</a></li>
+        <li><a href="{% url 'contact' %}">Contact Info</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+         {% if user.is_authenticated %}
+
+
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> User: {{ user.get_username}}</a></li>
+
+                <li><a href="{% url 'admin:index' %}"><span class="glyphicon glyphicon-plus-sign"></span> Add/edit</a></li>
+                <li><a href="{% url 'logout' %}?next={{request.path}}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+ {% else %}
+                <li><a href="{% url 'login' %}?next={{request.path}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+{% endif %}
+
+    </div>
+  </div>
+</nav>
+
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+            {% block content %}
+            {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

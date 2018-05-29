@@ -4,38 +4,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TheOwlArtists</title>
+    <title>Zirna</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href="//fonts.googleapis.com/css?family=Abel|Acme|Dosis|Quicksand|Roboto|Josefin+Sans|Lobster&subnet=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">-->
+    <link href="//fonts.googleapis.com/css?family=Montserrat|Lato|Abel|Acme|Dosis|Quicksand|Roboto|Josefin+Sans|Lobster&subnet=latin,latin-ext" rel="stylesheet" type="text/css">
     <!--<link rel="stylesheet" href="{% static 'css/blog.css' %}">-->
+    <link rel="stylesheet" href="{% static 'hetah.css' %}">
+
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 </head>
-<body>
 
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
-
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
-    <div class="navbar-header" style="padding-bottom:5px;">
+    <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#" style="font-family:Lobster,sans-serif;font-size:1.3em;color:white;">MSA Bangalore</a>
+      <a class="navbar-brand" href="/" style="font-family:Lobster,sans-serif;font-size:1.3em;color:white;">MSA Bangalore</a>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar" style="font-family:Roboto,sans-serif;font-size:1em;">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Home</a></li>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+      <li class="active"><a href="/">Home</a></li>
 
         <li><a href="{% url 'sarch' %}">Search</a></li>
         <li><a href="{% url 'contact' %}">Contact Info</a></li>
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
          {% if user.is_authenticated %}
 
 
@@ -47,9 +47,16 @@
                 <li><a href="{% url 'login' %}?next={{request.path}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 {% endif %}
 
+      </ul>
     </div>
   </div>
 </nav>
+
+
+
+
+
+
 
     <div class="content container">
         <div class="row">
@@ -59,5 +66,43 @@
             </div>
         </div>
     </div>
+
+<!-- Footer -->
+<footer class="text-center">
+  <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a><br><br>
+</footer>
+
+<script>
+$(document).ready(function(){
+  // Initialize Tooltip
+  $('[data-toggle="tooltip"]').tooltip();
+
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+})
+</script>
 </body>
 </html>

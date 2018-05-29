@@ -34,7 +34,7 @@ def post_new(request):
             post = form.save(commit=False)
 
             post.save()
-            return redirect('post_detail', pk=post.pk)
+            return redirect('college_detail', pk=post.pk)
     else:
         form = PostForm()
     return render(request, 'Blog/post_create.html', {'form': form})
@@ -62,6 +62,22 @@ def contact(request):
     return render(request,'Blog/Contact.html',{})
 
 def add_comment(request,pk):
+    post = get_object_or_404(College,pk = pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+
+        if form.is_valid():
+            comment = form.save(commit =False,instance=post)
+            comment.post =post
+            comment.save()
+            return redirect('college_detail',pk=pk)
+    else:
+        form = CommentForm()
+
+    return render(request,'Blog/add_comment_to.html',{'form':form},{'pk':post})
+
+
+def edit_comment(request,pk):
     post = get_object_or_404(College,pk = pk)
     if request.method == "POST":
         form = CommentForm(request.POST)
